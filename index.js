@@ -11,7 +11,7 @@ const dotenv = require('dotenv')
 dotenv.config({ path: './config/config.env'  })
 
 const keystone = new Keystone({
-  adapter: new MongooseAdapter({ mongoUri: MONGO_URI }),
+  adapter: new MongooseAdapter({ mongoUri: process.env.MONGO_URI }),
   onConnect: async keystone => {
     
     // 1. Create posts first as we need generated ids to establish relationship with user items.
