@@ -5,9 +5,13 @@ const { GraphQLApp } = require('@keystonejs/app-graphql');
 const { AdminUIApp } = require('@keystonejs/app-admin-ui');
 const { MongooseAdapter } = require('@keystonejs/adapter-mongoose');
 const { createItems } = require('@keystonejs/server-side-graphql-client');
+const dotenv = require('dotenv')
+
+// load config
+dotenv.config({ path: './config/config.env'  })
 
 const keystone = new Keystone({
-  adapter: new MongooseAdapter({ mongoUri: "mongodb://localhost:27017/keystone-post-app"}),
+  adapter: new MongooseAdapter({ mongoUri: MONGO_URI }),
   onConnect: async keystone => {
     
     // 1. Create posts first as we need generated ids to establish relationship with user items.
